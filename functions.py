@@ -1,4 +1,4 @@
-from tkinter import Button, HIDDEN
+from tkinter import Button, HIDDEN, NORMAL
 
 class Functions:
     def createButton(self, x, y, width, height, func, img):
@@ -70,9 +70,35 @@ class Functions:
         buttons['weapons_section'].place(x = 582, y = 6)
         buttons['artifacts_section'].place(x = 693, y = 7)
         buttons['equip_B'].place(x = 31, y = 571)
-        buttons['unequip_B'].place(x = 205, y = 571),
-        buttons['info_B'].place(x = 379, y = 571),
+        buttons['unequip_B'].place(x = 205, y = 571)
+        buttons['info_B'].place(x = 379, y = 571)
         buttons['back_B'].place(x = 553, y = 571)
+
+    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text):
+        root.geometry("800x800")
+        canvas.itemconfig(background, image = img)
+        buttons['helmets_section'].place_forget()
+        buttons['boots_section'].place_forget()
+        buttons['pants_section'].place_forget()
+        buttons['chestplates_section'].place_forget()
+        buttons['weapons_section'].place_forget()
+        buttons['artifacts_section'].place_forget()
+        buttons['equip_B'].place_forget()
+        buttons['unequip_B'].place_forget()
+        buttons['info_B'].place_forget()
+        buttons['back_B'].place_forget()
+
+        canvas.itemconfig(stats_text['atk'], state= NORMAL)
+        canvas.itemconfig(stats_text['def'], state= NORMAL)
+        canvas.itemconfig(stats_text['vel'], state= NORMAL)
+        canvas.itemconfig(stats_text['mag'], state= NORMAL)
+
+        buttons['helmet_B'].place(x = 162, y = 226)
+        buttons['chestplate_B'].place(x = 523, y = 224)
+        buttons['pants_B'].place(x = 162, y = 355)
+        buttons['boots_B'].place(x = 523, y = 355)
+        buttons['weapon_B'].place(x = 268, y = 87)
+        buttons['artifact_B'].place(x = 417, y = 87)
 
     def btn(self):
         a = 0

@@ -4,7 +4,7 @@ from database import DataBase
 
 class GUI:
     images = {
-    "character_sheet":      PhotoImage(file = f"images\character_sheet\character_bg.png"),
+    "character_bg":      PhotoImage(file = f"images\character_sheet\character_bg.png"),
     "equipment_frame":      PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     
     "artifacts_bg":         PhotoImage(file = f"images\inventory_sheet\\artifacts_bg.png"),
@@ -45,7 +45,7 @@ class GUI:
         background = canvas.create_image(
             0, 0,
             anchor = 'nw',
-            image= self.images["character_sheet"])
+            image= self.images["character_bg"])
 
         root = root
         db = DataBase()
@@ -83,10 +83,7 @@ class GUI:
             highlightthickness = 0,
             command = lambda: functions.helmet_BA(root, background, canvas, self.images['helmets_bg'], buttons, stats_text),
             relief = "flat")
-        buttons['helmet_B'].place(
-            x = 162, y = 226,
-            width = 113,
-            height = 113)
+        buttons['helmet_B'].place(x = 162, y = 226)
 
         buttons['chestplate_B'] = Button(
             image = self.images["equipment_frame"],
@@ -94,10 +91,7 @@ class GUI:
             highlightthickness = 0,
             command = lambda: functions.chestplate_BA(root, background, canvas, self.images['chestplates_bg'], buttons, stats_text),
             relief = "flat")
-        buttons['chestplate_B'].place(
-            x = 523, y = 224,
-            width = 113,
-            height = 113)
+        buttons['chestplate_B'].place(x = 523, y = 224)
         
         buttons['pants_B'] = Button(
             image = self.images["equipment_frame"],
@@ -105,10 +99,7 @@ class GUI:
             highlightthickness = 0,
             command = lambda: functions.pant_BA(root, background, canvas, self.images['pants_bg'], buttons, stats_text),
             relief = "flat")
-        buttons['pants_B'].place(
-            x = 162, y = 355,
-            width = 113,
-            height = 113)
+        buttons['pants_B'].place(x = 162, y = 355)
         
         buttons['boots_B'] = Button(
             image = self.images["equipment_frame"],
@@ -116,10 +107,7 @@ class GUI:
             highlightthickness = 0,
             command = lambda: functions.boot_BA(root, background, canvas, self.images['boots_bg'], buttons, stats_text),
             relief = "flat")
-        buttons['boots_B'].place(
-            x = 523, y = 355,
-            width = 113,
-            height = 113)
+        buttons['boots_B'].place(x = 523, y = 355)
         
         buttons['weapon_B'] = Button(
             image = self.images["equipment_frame"],
@@ -127,10 +115,7 @@ class GUI:
             highlightthickness = 0,
             command = lambda: functions.weapon_BA(root, background, canvas, self.images['weapons_bg'], buttons, stats_text), 
             relief = "flat")
-        buttons['weapon_B'].place(
-            x = 268, y = 87,
-            width = 113,
-            height = 113)
+        buttons['weapon_B'].place(x = 268, y = 87)
 
         buttons['artifact_B'] = Button(
             image = self.images["equipment_frame"],
@@ -138,10 +123,7 @@ class GUI:
             highlightthickness = 0,
             command = lambda: functions.artifact_BA(root, background, canvas, self.images['artifacts_bg'], buttons, stats_text), 
             relief = "flat")
-        buttons['artifact_B'].place(
-            x = 417, y = 87,
-            width = 113,
-            height = 113)
+        buttons['artifact_B'].place(x = 417, y = 87)
 
         buttons['helmets_section'] = Button(
             image = self.images['helmets_section'],
@@ -210,5 +192,5 @@ class GUI:
             image = self.images['back_B'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.btn(),
+            command = lambda: functions.initialize_character_sheet(root, background, canvas, self.images['character_bg'], buttons, stats_text),
             relief = "flat")
