@@ -1,52 +1,69 @@
 from tkinter import Button, HIDDEN, NORMAL
 
 class Functions:
-    def createButton(self, x, y, width, height, func, img):
-        button = Button(
-            image = img,
-            borderwidth = 0,
-            highlightthickness = 0,
-            command = func,
-            relief = "flat")
-        button.place(x=x, y=y, width=width, height=height)
-        
-        return button
-        
+
     def updateStats(self, stats, canvas, db):
         canvas.itemconfig(stats['atk'], text = db.character['stats']['atk'])
         canvas.itemconfig(stats['def'], text = db.character['stats']['def'])
         canvas.itemconfig(stats['vel'], text = db.character['stats']['vel'])
         canvas.itemconfig(stats['mag'], text = db.character['stats']['mag'])
 
-    def helmet_BA(self, root, background, canvas, img, buttons, stats_text):
+    # def inventory_grid_section(self, root, background, canvas, img, buttons, stats_text, inventory_grid, section):
+    #     self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
+
+    #     buttons[section].place_forget()
+
+    #     for item in inventory_grid:
+    #         print(item)
+    #         item[0].place(x = item[1], y = item[2])
+
+    def helmet_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
 
         buttons['helmets_section'].place_forget()
 
-    def chestplate_BA(self, root, background, canvas, img, buttons, stats_text):
+        for item in inventory_grid:
+            item[0].place(x = item[1], y = item[2])
+
+    def chestplate_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
 
         buttons['chestplates_section'].place_forget()
 
-    def pant_BA(self, root, background, canvas, img, buttons, stats_text):
+        for item in inventory_grid:
+            item[0].place(x = item[1], y = item[2])
+
+    def pant_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
 
         buttons['pants_section'].place_forget()
 
-    def boot_BA(self, root, background, canvas, img, buttons, stats_text):
+        for item in inventory_grid:
+            item[0].place(x = item[1], y = item[2])
+
+    def boot_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
 
         buttons['boots_section'].place_forget()
 
-    def weapon_BA(self, root, background, canvas, img, buttons, stats_text):
+        for item in inventory_grid:
+            item[0].place(x = item[1], y = item[2])
+
+    def weapon_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
 
         buttons['weapons_section'].place_forget()
 
-    def artifact_BA(self, root, background, canvas, img, buttons, stats_text):
+        for item in inventory_grid:
+            item[0].place(x = item[1], y = item[2])
+
+    def artifact_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
 
         buttons['artifacts_section'].place_forget()
+
+        for item in inventory_grid:
+            item[0].place(x = item[1], y = item[2])
     
     def initialize_inventory(self, root, background, canvas, img, buttons, stats_text):
         root.geometry("800x671")
@@ -74,7 +91,7 @@ class Functions:
         buttons['info_B'].place(x = 379, y = 571)
         buttons['back_B'].place(x = 553, y = 571)
 
-    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text):
+    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         root.geometry("800x800")
         canvas.itemconfig(background, image = img)
         buttons['helmets_section'].place_forget()
@@ -87,6 +104,8 @@ class Functions:
         buttons['unequip_B'].place_forget()
         buttons['info_B'].place_forget()
         buttons['back_B'].place_forget()
+        for item in inventory_grid:
+            item[0].place_forget()
 
         canvas.itemconfig(stats_text['atk'], state= NORMAL)
         canvas.itemconfig(stats_text['def'], state= NORMAL)

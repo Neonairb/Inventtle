@@ -24,7 +24,8 @@ class GUI:
     "equip_B":              PhotoImage(file = f"images\inventory_sheet\\equip_B.png"),
     "unequip_B":            PhotoImage(file = f"images\inventory_sheet\\unequip_B.png"),
     "info_B":               PhotoImage(file = f"images\inventory_sheet\\info_B.png"),
-    "back_B":               PhotoImage(file = f"images\inventory_sheet\\back_B.png")
+    "back_B":               PhotoImage(file = f"images\inventory_sheet\\back_B.png"),
+    "e_button":             PhotoImage(file = f"images\inventory_sheet\\e_button.png")
     }
     def __init__(self, root):
         root.geometry("800x800")
@@ -75,13 +76,30 @@ class GUI:
         }
 
         # Botones
+
+        inventory_grid = []
+
+        y = 114
+        for i in range(max(len(db.helmets), len(db.chestplates), len(db.pants), len(db.boots), len(db.weapons), len(db.artifacts))):
+            if(i%9 == 0):
+                y += 74
+            
+            new_button = Button(
+                image = self.images["e_button"],
+                command = lambda: functions.helmet_BA(root, background, canvas, self.images['helmets_bg'], buttons, stats_text),
+                borderwidth = 0,
+                highlightthickness = 0,
+                relief = "flat")
+
+            inventory_grid.append([new_button, 37+(74*(i%9)), y])
+
         buttons = {}
 
         buttons['helmet_B'] = Button(
             image = self.images["equipment_frame"],
+            command = lambda: functions.helmet_BA(root, background, canvas, self.images['helmets_bg'], buttons, stats_text, inventory_grid),
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.helmet_BA(root, background, canvas, self.images['helmets_bg'], buttons, stats_text),
             relief = "flat")
         buttons['helmet_B'].place(x = 162, y = 226)
 
@@ -89,7 +107,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.chestplate_BA(root, background, canvas, self.images['chestplates_bg'], buttons, stats_text),
+            command = lambda: functions.chestplate_BA(root, background, canvas, self.images['chestplates_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
         buttons['chestplate_B'].place(x = 523, y = 224)
         
@@ -97,7 +115,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.pant_BA(root, background, canvas, self.images['pants_bg'], buttons, stats_text),
+            command = lambda: functions.pant_BA(root, background, canvas, self.images['pants_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
         buttons['pants_B'].place(x = 162, y = 355)
         
@@ -105,7 +123,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.boot_BA(root, background, canvas, self.images['boots_bg'], buttons, stats_text),
+            command = lambda: functions.boot_BA(root, background, canvas, self.images['boots_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
         buttons['boots_B'].place(x = 523, y = 355)
         
@@ -113,7 +131,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.weapon_BA(root, background, canvas, self.images['weapons_bg'], buttons, stats_text), 
+            command = lambda: functions.weapon_BA(root, background, canvas, self.images['weapons_bg'], buttons, stats_text, inventory_grid), 
             relief = "flat")
         buttons['weapon_B'].place(x = 268, y = 87)
 
@@ -121,7 +139,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.artifact_BA(root, background, canvas, self.images['artifacts_bg'], buttons, stats_text), 
+            command = lambda: functions.artifact_BA(root, background, canvas, self.images['artifacts_bg'], buttons, stats_text, inventory_grid), 
             relief = "flat")
         buttons['artifact_B'].place(x = 417, y = 87)
 
@@ -129,42 +147,42 @@ class GUI:
             image = self.images['helmets_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.helmet_BA(root, background, canvas, self.images['helmets_bg'], buttons, stats_text),
+            command = lambda: functions.helmet_BA(root, background, canvas, self.images['helmets_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
 
         buttons['boots_section'] = Button(
             image = self.images['boots_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.boot_BA(root, background, canvas, self.images['boots_bg'], buttons, stats_text),
+            command = lambda: functions.boot_BA(root, background, canvas, self.images['boots_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
 
         buttons['pants_section'] = Button(
             image = self.images['pants_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.pant_BA(root, background, canvas, self.images['pants_bg'], buttons, stats_text),
+            command = lambda: functions.pant_BA(root, background, canvas, self.images['pants_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
 
         buttons['chestplates_section'] = Button(
             image = self.images['chestplates_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.chestplate_BA(root, background, canvas, self.images['chestplates_bg'], buttons, stats_text),
+            command = lambda: functions.chestplate_BA(root, background, canvas, self.images['chestplates_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
 
         buttons['weapons_section'] = Button(
             image = self.images['weapons_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.weapon_BA(root, background, canvas, self.images['weapons_bg'], buttons, stats_text),
+            command = lambda: functions.weapon_BA(root, background, canvas, self.images['weapons_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
 
         buttons['artifacts_section'] = Button(
             image = self.images['artifacts_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.artifact_BA(root, background, canvas, self.images['artifacts_bg'], buttons, stats_text),
+            command = lambda: functions.artifact_BA(root, background, canvas, self.images['artifacts_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
 
         buttons['equip_B'] = Button(
@@ -192,5 +210,5 @@ class GUI:
             image = self.images['back_B'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_character_sheet(root, background, canvas, self.images['character_bg'], buttons, stats_text),
+            command = lambda: functions.initialize_character_sheet(root, background, canvas, self.images['character_bg'], buttons, stats_text, inventory_grid),
             relief = "flat")
