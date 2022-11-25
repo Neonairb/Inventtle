@@ -8,66 +8,27 @@ class Functions:
         canvas.itemconfig(stats['vel'], text = db.character['stats']['vel'])
         canvas.itemconfig(stats['mag'], text = db.character['stats']['mag'])
 
-    # def inventory_grid_section(self, root, background, canvas, img, buttons, stats_text, inventory_grid, section):
-    #     self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
+    def inventory_sheet_button(self, buttons, inventory_grid, section, background, canvas, img):
+        canvas.itemconfig(background, image = img)
+        
+        buttons['helmets_section'].place(x = 2, y = 5)
+        buttons['boots_section'].place(x = 332, y = 7)
+        buttons['pants_section'].place(x = 221, y = 7)
+        buttons['chestplates_section'].place(x = 110, y = 7)
+        buttons['weapons_section'].place(x = 582, y = 6)
+        buttons['artifacts_section'].place(x = 693, y = 7)
+        buttons['equip_B'].place(x = 31, y = 571)
+        buttons['unequip_B'].place(x = 205, y = 571)
+        buttons['info_B'].place(x = 379, y = 571)
+        buttons['back_B'].place(x = 553, y = 571)
 
-    #     buttons[section].place_forget()
-
-    #     for item in inventory_grid:
-    #         print(item)
-    #         item[0].place(x = item[1], y = item[2])
-
-    def helmet_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
-        self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
-
-        buttons['helmets_section'].place_forget()
-
-        for item in inventory_grid:
-            item[0].place(x = item[1], y = item[2])
-
-    def chestplate_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
-        self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
-
-        buttons['chestplates_section'].place_forget()
-
-        for item in inventory_grid:
-            item[0].place(x = item[1], y = item[2])
-
-    def pant_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
-        self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
-
-        buttons['pants_section'].place_forget()
-
-        for item in inventory_grid:
-            item[0].place(x = item[1], y = item[2])
-
-    def boot_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
-        self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
-
-        buttons['boots_section'].place_forget()
-
-        for item in inventory_grid:
-            item[0].place(x = item[1], y = item[2])
-
-    def weapon_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
-        self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
-
-        buttons['weapons_section'].place_forget()
-
-        for item in inventory_grid:
-            item[0].place(x = item[1], y = item[2])
-
-    def artifact_BA(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
-        self.initialize_inventory(root, background, canvas, img, buttons, stats_text)
-
-        buttons['artifacts_section'].place_forget()
+        buttons[section].place_forget()
 
         for item in inventory_grid:
             item[0].place(x = item[1], y = item[2])
     
-    def initialize_inventory(self, root, background, canvas, img, buttons, stats_text):
+    def initialize_inventory_sheet(self, root, background, canvas, img, stats_text, buttons, inventory_grid, section):
         root.geometry("800x671")
-        canvas.itemconfig(background, image = img)
         buttons['helmet_B'].place_forget()
         buttons['chestplate_B'].place_forget()
         buttons['pants_B'].place_forget()
@@ -80,16 +41,7 @@ class Functions:
         canvas.itemconfig(stats_text['vel'], state= HIDDEN)
         canvas.itemconfig(stats_text['mag'], state= HIDDEN)
 
-        buttons['helmets_section'].place(x = 2, y = 5)
-        buttons['boots_section'].place(x = 332, y = 7)
-        buttons['pants_section'].place(x = 221, y = 7)
-        buttons['chestplates_section'].place(x = 110, y = 7)
-        buttons['weapons_section'].place(x = 582, y = 6)
-        buttons['artifacts_section'].place(x = 693, y = 7)
-        buttons['equip_B'].place(x = 31, y = 571)
-        buttons['unequip_B'].place(x = 205, y = 571)
-        buttons['info_B'].place(x = 379, y = 571)
-        buttons['back_B'].place(x = 553, y = 571)
+        self.inventory_sheet_button(buttons, inventory_grid, section, background, canvas, img)
 
     def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
         root.geometry("800x800")
