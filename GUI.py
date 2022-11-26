@@ -33,7 +33,8 @@ class GUI:
     "DPM":                  PhotoImage(file = f"images\items\\DPM.png"),
     "DSM":                  PhotoImage(file = f"images\items\\DSM.png"),
     "TOUM":                 PhotoImage(file = f"images\items\\TOUM.png"),
-    "WSM":                  PhotoImage(file = f"images\items\\WDM.png")
+    "WSM":                  PhotoImage(file = f"images\items\\WDM.png"),
+    "":                     PhotoImage(file = f"images\items\\empty.png")
     }
     def __init__(self, root):
         root.geometry("800x800")
@@ -85,7 +86,13 @@ class GUI:
 
         # Botones
         coords = []
-        character_armor = {'helmet': Button(), 'chestplate': Button(), 'pants': Button(), 'boots': Button(), 'weapon': Button(), 'artifact': Button()}
+        character_armor = {'helmet':        [Button(), db.character['armor']['helmet']], 
+                            'chestplate':   [Button(), db.character['armor']['chestplate']], 
+                            'pants':        [Button(), db.character['armor']['pants']], 
+                            'boots':        [Button(), db.character['armor']['boots']], 
+                            'weapon':       [Button(), db.character['weapon']], 
+                            'artifact':     [Button(), db.character['artifact']]}
+
         y = 114
         for i in range(max(len(db.helmets), len(db.chestplates), len(db.pants), len(db.boots), len(db.weapons), len(db.artifacts))):
             if(i%9 == 0):
@@ -102,7 +109,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda button = inventory_items[item['code']]: functions.select_item(button, character_armor, 'helmet'))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'helmet', stats_text, db.data, code))
         for item in db.chestplates:
             new_button = Button(
                 image = self.images[item['code']],
@@ -111,7 +118,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda button = inventory_items[item['code']]: functions.select_item(button, character_armor, 'chestplate'))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'chestplate', stats_text, db.data, code))
         for item in db.pants:
             new_button = Button(
                 image = self.images[item['code']],
@@ -120,7 +127,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda button = inventory_items[item['code']]: functions.select_item(button, character_armor, 'pants'))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'pants', stats_text, db.data, code))
         for item in db.boots:
             new_button = Button(
                 image = self.images[item['code']],
@@ -129,7 +136,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda button = inventory_items[item['code']]: functions.select_item(button, character_armor, 'boots'))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'boots', stats_text, db.data, code))
         for item in db.weapons:
             new_button = Button(
                 image = self.images[item['code']],
@@ -138,7 +145,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda button = inventory_items[item['code']]: functions.select_item(button, character_armor, 'weapon'))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'weapon', stats_text, db.data, code))
         for item in db.artifacts:
             new_button = Button(
                 image = self.images[item['code']],
@@ -147,7 +154,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda button = inventory_items[item['code']]: functions.select_item(button, character_armor, 'artifact'))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'artifact', stats_text, db.data, code))
 
         buttons = {}
 

@@ -93,10 +93,36 @@ class Functions:
         buttons['weapon_B'].place(x = 268, y = 87)
         buttons['artifact_B'].place(x = 417, y = 87)
 
-    def select_item(self, button, character_armor, piece):
-        character_armor[piece]['state'] = NORMAL
-        character_armor[piece] = button
-        character_armor[piece]['state'] = DISABLED
+    def select_item(self, button, character_armor, piece, stats_text, db, code):
+
+        character_armor[piece][0]['state'] = NORMAL
+        character_armor[piece][0] = button
+        character_armor[piece][0]['state'] = DISABLED
+        character_armor[piece][1] = code
+        
+        db.character.update_one({'name': 'Nahida'}, {"$set": { 
+            'armor.helmet': character_armor['helmet'][1],
+            'armor.chestplate': character_armor['chestplate'][1],
+            'armor.pants': character_armor['pants'][1],
+            'armor.boots': character_armor['boots'][1],
+            'weapon': character_armor['weapon'][1],
+            'artifact': character_armor['artifact'][1],
+
+            'stats.atk': self.get_stat(db, character_armor, 'atk'),
+            'stats.def': self.get_stat(db, character_armor, 'def'),
+            'stats.vel': self.get_stat(db, character_armor, 'vel'),
+            'stats.mag': self.get_stat(db, character_armor, 'mag'),
+        }})
+
+    def get_stat(self, db, character_armor, stat):
+        helmet = list(db['helmets'].find({'code': character_armor['helmet'][1]}))[0]['stats'][stat]
+        chestplate = list(db['chestplates'].find({'code': character_armor['chestplate'][1]}))[0]['stats'][stat]
+        pants = list(db['pants'].find({'code': character_armor['pants'][1]}))[0]['stats'][stat]
+        boots = list(db['boots'].find({'code': character_armor['boots'][1]}))[0]['stats'][stat]
+        weapon = list(db['weapons'].find({'code': character_armor['weapon'][1]}))[0]['stats'][stat] 
+        artifact = list(db['artifacts'].find({'code': character_armor['artifact'][1]}))[0]['stats'][stat]
+
+        return (helmet + chestplate + pants + boots + weapon) * artifact
 
     def btn(self):
         a = 0

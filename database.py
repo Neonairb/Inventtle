@@ -1,14 +1,7 @@
-import pymongo
 from pymongo import MongoClient
 
 class DataBase:
-    character = {}
-    helmets = {}
-    chestplates = {}
-    pants = {}
-    boots = {}
-    weapons = {}
-    artifacts = {}
+
     def __init__(self):
         cluster = MongoClient("mongodb+srv://inventtle:1234@cluster0.xdubogw.mongodb.net/?retryWrites=true&w=majority")
         db = cluster['inventtle']
@@ -20,3 +13,4 @@ class DataBase:
         self.weapons = list(db['weapons'].find({}))
         self.artifacts = list(db['artifacts'].find({}))
         self.character = db['character'].find({})[0]
+        self.data = db
