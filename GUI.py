@@ -4,7 +4,7 @@ from database import DataBase
 
 class GUI:
     images = {
-    "character_bg":      PhotoImage(file = f"images\character_sheet\character_bg.png"),
+    "character_bg":         PhotoImage(file = f"images\character_sheet\character_bg.png"),
     "equipment_frame":      PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     
     "artifacts_bg":         PhotoImage(file = f"images\inventory_sheet\\artifacts_bg.png"),
@@ -25,7 +25,15 @@ class GUI:
     "unequip_B":            PhotoImage(file = f"images\inventory_sheet\\unequip_B.png"),
     "info_B":               PhotoImage(file = f"images\inventory_sheet\\info_B.png"),
     "back_B":               PhotoImage(file = f"images\inventory_sheet\\back_B.png"),
-    "e_button":             PhotoImage(file = f"images\inventory_sheet\\e_button.png")
+    "e_button":             PhotoImage(file = f"images\inventory_sheet\\e_button.png"),
+
+    "DBM":                  PhotoImage(file = f"images\items\\DBM.png"),
+    "DCM":                  PhotoImage(file = f"images\items\\DCM.png"),
+    "DHM":                  PhotoImage(file = f"images\items\\DHM.png"),
+    "DPM":                  PhotoImage(file = f"images\items\\DPM.png"),
+    "DSM":                  PhotoImage(file = f"images\items\\DSM.png"),
+    "TOUM":                 PhotoImage(file = f"images\items\\TOUM.png"),
+    "WSM":                  PhotoImage(file = f"images\items\\WDM.png")
     }
     def __init__(self, root):
         root.geometry("800x800")
@@ -76,28 +84,69 @@ class GUI:
         }
 
         # Botones
-
-        inventory_grid = []
-
+        coords = []
         y = 114
         for i in range(max(len(db.helmets), len(db.chestplates), len(db.pants), len(db.boots), len(db.weapons), len(db.artifacts))):
             if(i%9 == 0):
                 y += 74
-            
+            coords.append([37+(74*(i%9)), y])
+
+        inventory_items = {}
+
+        for item in db.helmets:
             new_button = Button(
-                image = self.images["e_button"],
+                image = self.images[item['code']],
                 command = lambda: lambda: functions.btn(),
                 borderwidth = 0,
                 highlightthickness = 0,
                 relief = "flat")
-
-            inventory_grid.append([new_button, 37+(74*(i%9)), y])
+            inventory_items[item['code']] = new_button
+        for item in db.chestplates:
+            new_button = Button(
+                image = self.images[item['code']],
+                command = lambda: lambda: functions.btn(),
+                borderwidth = 0,
+                highlightthickness = 0,
+                relief = "flat")
+            inventory_items[item['code']] = new_button
+        for item in db.pants:
+            new_button = Button(
+                image = self.images[item['code']],
+                command = lambda: lambda: functions.btn(),
+                borderwidth = 0,
+                highlightthickness = 0,
+                relief = "flat")
+            inventory_items[item['code']] = new_button
+        for item in db.boots:
+            new_button = Button(
+                image = self.images[item['code']],
+                command = lambda: lambda: functions.btn(),
+                borderwidth = 0,
+                highlightthickness = 0,
+                relief = "flat")
+            inventory_items[item['code']] = new_button
+        for item in db.weapons:
+            new_button = Button(
+                image = self.images[item['code']],
+                command = lambda: lambda: functions.btn(),
+                borderwidth = 0,
+                highlightthickness = 0,
+                relief = "flat")
+            inventory_items[item['code']] = new_button
+        for item in db.artifacts:
+            new_button = Button(
+                image = self.images[item['code']],
+                command = lambda: lambda: functions.btn(),
+                borderwidth = 0,
+                highlightthickness = 0,
+                relief = "flat")
+            inventory_items[item['code']] = new_button
 
         buttons = {}
 
         buttons['helmet_B'] = Button(
             image = self.images["equipment_frame"],
-            command = lambda: functions.initialize_inventory_sheet(root, background, canvas, self.images['helmets_bg'], stats_text, buttons, inventory_grid, 'helmets_section'),
+            command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['helmets_bg'], stats_text, buttons, inventory_items, coords, 'helmets_section'),
             borderwidth = 0,
             highlightthickness = 0,
             relief = "flat")
@@ -107,7 +156,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_inventory_sheet(root, background, canvas, self.images['chestplates_bg'], stats_text, buttons, inventory_grid, 'chestplates_section'),
+            command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['chestplates_bg'], stats_text, buttons, inventory_items, coords, 'chestplates_section'),
             relief = "flat")
         buttons['chestplate_B'].place(x = 523, y = 224)
         
@@ -115,7 +164,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_inventory_sheet(root, background, canvas, self.images['pants_bg'], stats_text, buttons, inventory_grid, 'pants_section'),
+            command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['pants_bg'], stats_text, buttons, inventory_items, coords, 'pants_section'),
             relief = "flat")
         buttons['pants_B'].place(x = 162, y = 355)
         
@@ -123,7 +172,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_inventory_sheet(root, background, canvas, self.images['boots_bg'], stats_text, buttons, inventory_grid, 'boots_section'),
+            command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['boots_bg'], stats_text, buttons, inventory_items, coords, 'boots_section'),
             relief = "flat")
         buttons['boots_B'].place(x = 523, y = 355)
         
@@ -131,7 +180,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_inventory_sheet(root, background, canvas, self.images['weapons_bg'], stats_text, buttons, inventory_grid, 'weapons_section'), 
+            command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['weapons_bg'], stats_text, buttons, inventory_items, coords, 'weapons_section'), 
             relief = "flat")
         buttons['weapon_B'].place(x = 268, y = 87)
 
@@ -139,7 +188,7 @@ class GUI:
             image = self.images["equipment_frame"],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_inventory_sheet(root, background, canvas, self.images['artifacts_bg'], stats_text, buttons, inventory_grid, 'artifacts_section'), 
+            command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['artifacts_bg'], stats_text, buttons, inventory_items, coords, 'artifacts_section'), 
             relief = "flat")
         buttons['artifact_B'].place(x = 417, y = 87)
 
@@ -147,42 +196,42 @@ class GUI:
             image = self.images['helmets_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.inventory_sheet_button(buttons, inventory_grid, 'helmets_section', background, canvas, self.images['helmets_bg']),
+            command = lambda: functions.inventory_sheet_button(buttons, db, coords, inventory_items, 'helmets_section', background, canvas, self.images['helmets_bg']),
             relief = "flat")
 
         buttons['boots_section'] = Button(
             image = self.images['boots_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.inventory_sheet_button(buttons, inventory_grid, 'boots_section', background, canvas, self.images['boots_bg']),
+            command = lambda: functions.inventory_sheet_button(buttons, db, coords, inventory_items, 'boots_section', background, canvas, self.images['boots_bg']),
             relief = "flat")
 
         buttons['pants_section'] = Button(
             image = self.images['pants_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.inventory_sheet_button(buttons, inventory_grid, 'pants_section', background, canvas, self.images['pants_bg']),
+            command = lambda: functions.inventory_sheet_button(buttons, db, coords, inventory_items, 'pants_section', background, canvas, self.images['pants_bg']),
             relief = "flat")
 
         buttons['chestplates_section'] = Button(
             image = self.images['chestplates_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.inventory_sheet_button(buttons, inventory_grid, 'chestplates_section', background, canvas, self.images['chestplates_bg']),
+            command = lambda: functions.inventory_sheet_button(buttons, db, coords, inventory_items, 'chestplates_section', background, canvas, self.images['chestplates_bg']),
             relief = "flat")
 
         buttons['weapons_section'] = Button(
             image = self.images['weapons_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.inventory_sheet_button(buttons, inventory_grid, 'weapons_section', background, canvas, self.images['weapons_bg']),
+            command = lambda: functions.inventory_sheet_button(buttons, db, coords, inventory_items, 'weapons_section', background, canvas, self.images['weapons_bg']),
             relief = "flat")
 
         buttons['artifacts_section'] = Button(
             image = self.images['artifacts_section'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.inventory_sheet_button(buttons, inventory_grid, 'artifacts_section', background, canvas, self.images['artifacts_bg']),
+            command = lambda: functions.inventory_sheet_button(buttons, db, coords, inventory_items, 'artifacts_section', background, canvas, self.images['artifacts_bg']),
             relief = "flat")
 
         buttons['equip_B'] = Button(
@@ -210,5 +259,5 @@ class GUI:
             image = self.images['back_B'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_character_sheet(root, background, canvas, self.images['character_bg'], buttons, stats_text, inventory_grid),
+            command = lambda: functions.initialize_character_sheet(root, background, canvas, self.images['character_bg'], buttons, stats_text, inventory_items),
             relief = "flat")

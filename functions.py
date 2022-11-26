@@ -8,7 +8,7 @@ class Functions:
         canvas.itemconfig(stats['vel'], text = db.character['stats']['vel'])
         canvas.itemconfig(stats['mag'], text = db.character['stats']['mag'])
 
-    def inventory_sheet_button(self, buttons, inventory_grid, section, background, canvas, img):
+    def inventory_sheet_button(self, buttons, db, coords, inventory_items, section, background, canvas, img):
         canvas.itemconfig(background, image = img)
         
         buttons['helmets_section'].place(x = 2, y = 5)
@@ -24,10 +24,35 @@ class Functions:
 
         buttons[section].place_forget()
 
-        for item in inventory_grid:
-            item[0].place(x = item[1], y = item[2])
+        # for item in inventory_items:
+        #     item[0].place(x = item[1], y = item[2])
+
+        for item in inventory_items:
+            inventory_items[item].place_forget()
+
+        try:
+            if(section == 'helmets_section'):
+                for i, item in enumerate(coords):
+                    inventory_items[db.helmets[i]['code']].place(x = item[0], y = item[1])
+            elif(section == 'chestplates_section'):
+                for i, item in enumerate(coords):
+                    inventory_items[db.chestplates[i]['code']].place(x = item[0], y = item[1])
+            elif(section == 'pants_section'):
+                for i, item in enumerate(coords):
+                    inventory_items[db.pants[i]['code']].place(x = item[0], y = item[1])
+            elif(section == 'boots_section'):
+                for i, item in enumerate(coords):
+                    inventory_items[db.boots[i]['code']].place(x = item[0], y = item[1])
+            elif(section == 'weapons_section'):
+                for i, item in enumerate(coords):
+                    inventory_items[db.weapons[i]['code']].place(x = item[0], y = item[1])
+            elif(section == 'artifacts_section'):
+                for i, item in enumerate(coords):
+                    inventory_items[db.artifacts[i]['code']].place(x = item[0], y = item[1])
+        except:
+            next
     
-    def initialize_inventory_sheet(self, root, background, canvas, img, stats_text, buttons, inventory_grid, section):
+    def initialize_inventory_sheet(self, root, db, background, canvas, img, stats_text, buttons, inventory_items, coords, section):
         root.geometry("800x671")
         buttons['helmet_B'].place_forget()
         buttons['chestplate_B'].place_forget()
@@ -41,9 +66,9 @@ class Functions:
         canvas.itemconfig(stats_text['vel'], state= HIDDEN)
         canvas.itemconfig(stats_text['mag'], state= HIDDEN)
 
-        self.inventory_sheet_button(buttons, inventory_grid, section, background, canvas, img)
+        self.inventory_sheet_button(buttons, db, coords, inventory_items, section, background, canvas, img)
 
-    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_grid):
+    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_items):
         root.geometry("800x800")
         canvas.itemconfig(background, image = img)
         buttons['helmets_section'].place_forget()
@@ -56,8 +81,8 @@ class Functions:
         buttons['unequip_B'].place_forget()
         buttons['info_B'].place_forget()
         buttons['back_B'].place_forget()
-        for item in inventory_grid:
-            item[0].place_forget()
+        for item in inventory_items:
+            inventory_items[item].place_forget()
 
         canvas.itemconfig(stats_text['atk'], state= NORMAL)
         canvas.itemconfig(stats_text['def'], state= NORMAL)
