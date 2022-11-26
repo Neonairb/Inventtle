@@ -8,7 +8,7 @@ class Functions:
         canvas.itemconfig(stats['vel'], text = db.character['stats']['vel'])
         canvas.itemconfig(stats['mag'], text = db.character['stats']['mag'])
 
-    def inventory_sheet_button(self, buttons, db, coords, inventory_items, section, background, canvas, img):
+    def inventory_sheet_button(self, buttons, db, coords, inventory_items, section, background, canvas, img, character_armor):
         canvas.itemconfig(background, image = img)
         
         buttons['helmets_section'].place(x = 2, y = 5)
@@ -49,7 +49,7 @@ class Functions:
         except:
             next
     
-    def initialize_inventory_sheet(self, root, db, background, canvas, img, stats_text, buttons, inventory_items, coords, section):
+    def initialize_inventory_sheet(self, root, db, background, canvas, img, stats_text, buttons, inventory_items, coords, section, character_armor):
         root.geometry("800x671")
         buttons['helmet_B'].place_forget()
         buttons['chestplate_B'].place_forget()
@@ -63,9 +63,9 @@ class Functions:
         canvas.itemconfig(stats_text['vel'], state= HIDDEN)
         canvas.itemconfig(stats_text['mag'], state= HIDDEN)
 
-        self.inventory_sheet_button(buttons, db, coords, inventory_items, section, background, canvas, img)
+        self.inventory_sheet_button(buttons, db, coords, inventory_items, section, background, canvas, img, character_armor)
 
-    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_items):
+    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_items, db, character_armor):
         root.geometry("800x800")
         canvas.itemconfig(background, image = img)
         buttons['helmets_section'].place_forget()
@@ -93,20 +93,13 @@ class Functions:
         buttons['weapon_B'].place(x = 268, y = 87)
         buttons['artifact_B'].place(x = 417, y = 87)
 
-    def select_item(self, button, character_armor, piece, stats_text, db, code):
-
-        character_armor[piece][0]['state'] = NORMAL
-        character_armor[piece][0] = button
-        character_armor[piece][0]['state'] = DISABLED
-        character_armor[piece][1] = code
-        
         db.character.update_one({'name': 'Nahida'}, {"$set": { 
-            'armor.helmet': character_armor['helmet'][1],
-            'armor.chestplate': character_armor['chestplate'][1],
-            'armor.pants': character_armor['pants'][1],
-            'armor.boots': character_armor['boots'][1],
-            'weapon': character_armor['weapon'][1],
-            'artifact': character_armor['artifact'][1],
+            'armor.helmet': character_armor['helmets_section'][1],
+            'armor.chestplate': character_armor['chestplates_section'][1],
+            'armor.pants': character_armor['pants_section'][1],
+            'armor.boots': character_armor['boots_section'][1],
+            'weapon': character_armor['weapons_section'][1],
+            'artifact': character_armor['artifacts_section'][1],
 
             'stats.atk': self.get_stat(db, character_armor, 'atk'),
             'stats.def': self.get_stat(db, character_armor, 'def'),
@@ -114,13 +107,19 @@ class Functions:
             'stats.mag': self.get_stat(db, character_armor, 'mag'),
         }})
 
+    def select_item(self, button, character_armor, piece, stats_text, db, code):
+        character_armor[piece][0]['state'] = NORMAL
+        character_armor[piece][0] = button
+        character_armor[piece][0]['state'] = DISABLED
+        character_armor[piece][1] = code
+
     def get_stat(self, db, character_armor, stat):
-        helmet = list(db['helmets'].find({'code': character_armor['helmet'][1]}))[0]['stats'][stat]
-        chestplate = list(db['chestplates'].find({'code': character_armor['chestplate'][1]}))[0]['stats'][stat]
-        pants = list(db['pants'].find({'code': character_armor['pants'][1]}))[0]['stats'][stat]
-        boots = list(db['boots'].find({'code': character_armor['boots'][1]}))[0]['stats'][stat]
-        weapon = list(db['weapons'].find({'code': character_armor['weapon'][1]}))[0]['stats'][stat] 
-        artifact = list(db['artifacts'].find({'code': character_armor['artifact'][1]}))[0]['stats'][stat]
+        helmet = list(db['helmets'].find({'code': character_armor['helmets_section'][1]}))[0]['stats'][stat]
+        chestplate = list(db['chestplates'].find({'code': character_armor['chestplates_section'][1]}))[0]['stats'][stat]
+        pants = list(db['pants'].find({'code': character_armor['pants_section'][1]}))[0]['stats'][stat]
+        boots = list(db['boots'].find({'code': character_armor['boots_section'][1]}))[0]['stats'][stat]
+        weapon = list(db['weapons'].find({'code': character_armor['weapons_section'][1]}))[0]['stats'][stat] 
+        artifact = list(db['artifacts'].find({'code': character_armor['artifacts_section'][1]}))[0]['stats'][stat]
 
         return (helmet + chestplate + pants + boots + weapon) * artifact
 
