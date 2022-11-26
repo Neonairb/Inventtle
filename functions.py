@@ -1,7 +1,7 @@
-from tkinter import Button, HIDDEN, NORMAL
+from tkinter import Button, HIDDEN, NORMAL, DISABLED
 
 class Functions:
-
+    aux_button = Button()
     def updateStats(self, stats, canvas, db):
         canvas.itemconfig(stats['atk'], text = db.character['stats']['atk'])
         canvas.itemconfig(stats['def'], text = db.character['stats']['def'])
@@ -23,9 +23,6 @@ class Functions:
         buttons['back_B'].place(x = 553, y = 571)
 
         buttons[section].place_forget()
-
-        # for item in inventory_items:
-        #     item[0].place(x = item[1], y = item[2])
 
         for item in inventory_items:
             inventory_items[item].place_forget()
@@ -95,6 +92,11 @@ class Functions:
         buttons['boots_B'].place(x = 523, y = 355)
         buttons['weapon_B'].place(x = 268, y = 87)
         buttons['artifact_B'].place(x = 417, y = 87)
+
+    def select_item(self, button, character_armor, piece):
+        character_armor[piece]['state'] = NORMAL
+        character_armor[piece] = button
+        character_armor[piece]['state'] = DISABLED
 
     def btn(self):
         a = 0
