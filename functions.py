@@ -8,7 +8,7 @@ class Functions:
         canvas.itemconfig(stats['vel'], text = db.character['stats']['vel'])
         canvas.itemconfig(stats['mag'], text = db.character['stats']['mag'])
 
-    def inventory_sheet_button(self, buttons, db, coords, inventory_items, section, background, canvas, img, character_armor):
+    def inventory_sheet_button(self, buttons, db, coords, inventory_items, section, background, canvas, img, character_armor, item_stats):
         canvas.itemconfig(background, image = img)
         
         buttons['helmets_section'].place(x = 2, y = 5)
@@ -17,15 +17,21 @@ class Functions:
         buttons['chestplates_section'].place(x = 110, y = 7)
         buttons['weapons_section'].place(x = 582, y = 6)
         buttons['artifacts_section'].place(x = 693, y = 7)
-        buttons['equip_B'].place(x = 31, y = 571)
-        buttons['unequip_B'].place(x = 205, y = 571)
-        buttons['info_B'].place(x = 379, y = 571)
-        buttons['back_B'].place(x = 553, y = 571)
+        # buttons['equip_B'].place(x = 31, y = 571)
+        # buttons['unequip_B'].place(x = 205, y = 571)
+        # buttons['info_B'].place(x = 379, y = 571)
+        buttons['back_B'].place(x = 530, y = 571)
 
         buttons[section].place_forget()
 
         for item in inventory_items:
             inventory_items[item].place_forget()
+
+        # mostrar stats del objeto
+        canvas.itemconfig(item_stats['atk'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['atk'])
+        canvas.itemconfig(item_stats['def'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['def'])
+        canvas.itemconfig(item_stats['vel'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['vel'])
+        canvas.itemconfig(item_stats['mag'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['mag'])
 
         try:
             if(section == 'helmets_section'):
@@ -49,7 +55,7 @@ class Functions:
         except:
             next
     
-    def initialize_inventory_sheet(self, root, db, background, canvas, img, stats_text, buttons, inventory_items, coords, section, character_armor):
+    def initialize_inventory_sheet(self, root, db, background, canvas, img, stats_text, buttons, inventory_items, coords, section, character_armor,item_stats):
         root.geometry("800x671")
         buttons['helmet_B'].place_forget()
         buttons['chestplate_B'].place_forget()
@@ -58,14 +64,17 @@ class Functions:
         buttons['weapon_B'].place_forget()
         buttons['artifact_B'].place_forget()
 
-        canvas.itemconfig(stats_text['atk'], state= HIDDEN)
-        canvas.itemconfig(stats_text['def'], state= HIDDEN)
-        canvas.itemconfig(stats_text['vel'], state= HIDDEN)
-        canvas.itemconfig(stats_text['mag'], state= HIDDEN)
+        for item in stats_text:
+            canvas.itemconfig(stats_text[item], state= HIDDEN)
 
-        self.inventory_sheet_button(buttons, db, coords, inventory_items, section, background, canvas, img, character_armor)
+        canvas.itemconfig(item_stats['atk'], state= NORMAL)
+        canvas.itemconfig(item_stats['def'], state= NORMAL)
+        canvas.itemconfig(item_stats['vel'], state= NORMAL)
+        canvas.itemconfig(item_stats['mag'], state= NORMAL)
 
-    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_items, db, character_armor, images):
+        self.inventory_sheet_button(buttons, db, coords, inventory_items, section, background, canvas, img, character_armor, item_stats)
+
+    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_items, db, character_armor, images, item_stats):
         root.geometry("800x800")
         canvas.itemconfig(background, image = img)
         buttons['helmets_section'].place_forget()
@@ -74,10 +83,12 @@ class Functions:
         buttons['chestplates_section'].place_forget()
         buttons['weapons_section'].place_forget()
         buttons['artifacts_section'].place_forget()
-        buttons['equip_B'].place_forget()
-        buttons['unequip_B'].place_forget()
-        buttons['info_B'].place_forget()
+        # buttons['equip_B'].place_forget()
+        # buttons['unequip_B'].place_forget()
+        # buttons['info_B'].place_forget()
         buttons['back_B'].place_forget()
+        for item in item_stats:
+            canvas.itemconfig(item_stats[item], state= HIDDEN)
         for item in inventory_items:
             inventory_items[item].place_forget()
         
@@ -114,11 +125,16 @@ class Functions:
         canvas.itemconfig(stats_text['vel'], state= NORMAL, text= character['stats']['vel'])
         canvas.itemconfig(stats_text['mag'], state= NORMAL, text= character['stats']['mag'])
 
-    def select_item(self, button, character_armor, piece, code):
+    def select_item(self, button, character_armor, piece, code, db, item_stats, canvas):
         character_armor[piece][0]['state'] = NORMAL
         character_armor[piece][0] = button
         character_armor[piece][0]['state'] = DISABLED
         character_armor[piece][1] = code
+
+        canvas.itemconfig(item_stats['atk'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['stats']['atk'])
+        canvas.itemconfig(item_stats['def'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['stats']['def'])
+        canvas.itemconfig(item_stats['vel'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['stats']['vel'])
+        canvas.itemconfig(item_stats['mag'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['stats']['mag'])
 
     def get_stat(self, db, character_armor, stat):
         helmet = list(db['helmets'].find({'code': character_armor['helmets_section'][1]}))[0]['stats'][stat]
@@ -129,6 +145,3 @@ class Functions:
         artifact = list(db['artifacts'].find({'code': character_armor['artifacts_section'][1]}))[0]['stats'][stat]
 
         return int((helmet + chestplate + pants + boots + weapon) * artifact)
-
-    def btn(self):
-        a = 0
