@@ -28,11 +28,17 @@ class GUI:
     "e_button":             PhotoImage(file = f"images\inventory_sheet\\e_button.png"),
 
     "h":                     PhotoImage(file = f"images\items\\empty.png"),
+    "h_F":                   PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     "c":                     PhotoImage(file = f"images\items\\empty.png"),
+    "c_F":                   PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     "p":                     PhotoImage(file = f"images\items\\empty.png"),
+    "p_F":                   PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     "b":                     PhotoImage(file = f"images\items\\empty.png"),
+    "b_F":                   PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     "w":                     PhotoImage(file = f"images\items\\empty.png"),
+    "w_F":                   PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     "a":                     PhotoImage(file = f"images\items\\empty.png"),
+    "a_F":                   PhotoImage(file = f"images\character_sheet\equipment_frame.png"),
     # minecraft
     "DBM":                  PhotoImage(file = f"images\items\\DBM.png"),
     "DBM_F":                PhotoImage(file = f"images\items\\DBM_F.png"),

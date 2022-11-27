@@ -39,11 +39,11 @@ a = cluster['inventtle']['character']
 a.delete_many({})
 
 # ALL DATA
-add_armor('helmets', 'Nada', 1, 1, 1, 1, 'No llevas nada...', 'h')
-add_armor('pants', 'Nada', 1, 1, 1, 1, 'No llevas nada...', 'p')
-add_armor('boots', 'Nada', 1, 1, 1, 1, 'No llevas nada...', 'b')
-add_armor('chestplates', 'Nada', 1, 1, 1, 1, 'No llevas nada...', 'c')
-add_weapon('Nada', 1, 1, 1, 1, 'No llevas nada...', 'w')
+add_armor('helmets', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'h')
+add_armor('pants', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'p')
+add_armor('boots', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'b')
+add_armor('chestplates', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'c')
+add_weapon('Nada', 0, 0, 0, 0, 'No llevas nada...', 'w')
 add_artifact('Nada', 1, 1, 1, 1, 'No llevas nada...', 'a')
 
 #Minecraft
