@@ -80,12 +80,7 @@ class Functions:
         buttons['back_B'].place_forget()
         for item in inventory_items:
             inventory_items[item].place_forget()
-
-        canvas.itemconfig(stats_text['atk'], state= NORMAL)
-        canvas.itemconfig(stats_text['def'], state= NORMAL)
-        canvas.itemconfig(stats_text['vel'], state= NORMAL)
-        canvas.itemconfig(stats_text['mag'], state= NORMAL)
-
+        
         buttons['helmet_B'].place(x = 162, y = 226)
         buttons['chestplate_B'].place(x = 523, y = 224)
         buttons['pants_B'].place(x = 162, y = 355)
@@ -107,7 +102,13 @@ class Functions:
             'stats.mag': self.get_stat(db, character_armor, 'mag'),
         }})
 
-    def select_item(self, button, character_armor, piece, stats_text, db, code):
+        character = db['character'].find({})[0]
+        canvas.itemconfig(stats_text['atk'], state= NORMAL, text= character['stats']['atk'])
+        canvas.itemconfig(stats_text['def'], state= NORMAL, text= character['stats']['def'])
+        canvas.itemconfig(stats_text['vel'], state= NORMAL, text= character['stats']['vel'])
+        canvas.itemconfig(stats_text['mag'], state= NORMAL, text= character['stats']['mag'])
+
+    def select_item(self, button, character_armor, piece, code):
         character_armor[piece][0]['state'] = NORMAL
         character_armor[piece][0] = button
         character_armor[piece][0]['state'] = DISABLED
@@ -121,7 +122,7 @@ class Functions:
         weapon = list(db['weapons'].find({'code': character_armor['weapons_section'][1]}))[0]['stats'][stat] 
         artifact = list(db['artifacts'].find({'code': character_armor['artifacts_section'][1]}))[0]['stats'][stat]
 
-        return (helmet + chestplate + pants + boots + weapon) * artifact
+        return int((helmet + chestplate + pants + boots + weapon) * artifact)
 
     def btn(self):
         a = 0

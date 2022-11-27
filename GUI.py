@@ -1,4 +1,4 @@
-from tkinter import Button, Canvas, PhotoImage, DISABLED
+from tkinter import Button, Canvas, Label, PhotoImage, DISABLED
 from functions import Functions
 from database import DataBase
 
@@ -27,14 +27,92 @@ class GUI:
     "back_B":               PhotoImage(file = f"images\inventory_sheet\\back_B.png"),
     "e_button":             PhotoImage(file = f"images\inventory_sheet\\e_button.png"),
 
+    "h":                     PhotoImage(file = f"images\items\\empty.png"),
+    "c":                     PhotoImage(file = f"images\items\\empty.png"),
+    "p":                     PhotoImage(file = f"images\items\\empty.png"),
+    "b":                     PhotoImage(file = f"images\items\\empty.png"),
+    "w":                     PhotoImage(file = f"images\items\\empty.png"),
+    "a":                     PhotoImage(file = f"images\items\\empty.png"),
+    # minecraft
     "DBM":                  PhotoImage(file = f"images\items\\DBM.png"),
+    "DBM_F":                PhotoImage(file = f"images\items\\DBM_F.png"),
     "DCM":                  PhotoImage(file = f"images\items\\DCM.png"),
+    "DCM_F":                PhotoImage(file = f"images\items\\DCM_F.png"),
     "DHM":                  PhotoImage(file = f"images\items\\DHM.png"),
+    "DHM_F":                PhotoImage(file = f"images\items\\DHM_F.png"),
     "DPM":                  PhotoImage(file = f"images\items\\DPM.png"),
+    "DPM_F":                PhotoImage(file = f"images\items\\DPM_F.png"),
     "DSM":                  PhotoImage(file = f"images\items\\DSM.png"),
+    "DSM_F":                PhotoImage(file = f"images\items\\DSM_F.png"),
     "TOUM":                 PhotoImage(file = f"images\items\\TOUM.png"),
-    "WSM":                  PhotoImage(file = f"images\items\\WDM.png"),
-    "":                     PhotoImage(file = f"images\items\\empty.png")
+    "TOUM_F":               PhotoImage(file = f"images\items\\TOUM_F.png"),
+    # monster hunter
+    "APMMu_F":              PhotoImage(file = f"images\items\\APMMu_F.png"),
+    "APMMu":                PhotoImage(file = f"images\items\\APMMu.png"),
+    "FBMu_F":               PhotoImage(file = f"images\items\\FBMu_F.png"),
+    "FBMu":                 PhotoImage(file = f"images\items\\FBMu.png"),
+    # final fantasy
+    "BSF_F":                PhotoImage(file = f"images\items\\BSF_F.png"),
+    "BSF":                  PhotoImage(file = f"images\items\\BSF.png"),
+    # star wars
+    "LSS_F":                PhotoImage(file = f"images\items\\LSS_F.png"),
+    "LSS":                  PhotoImage(file = f"images\items\\LSS.png"),
+    "DBBS_F":               PhotoImage(file = f"images\items\\DBBS_F.png"),
+    "DBBS":                 PhotoImage(file = f"images\items\\DBBS.png"),
+    "DBCS_F":               PhotoImage(file = f"images\items\\DBCS_F.png"),
+    "DBCS":                 PhotoImage(file = f"images\items\\DBCS.png"),
+    "DBHS_F":               PhotoImage(file = f"images\items\\DBHS_F.png"),
+    "DBHS":                 PhotoImage(file = f"images\items\\DBHS.png"),
+    "DBPS_F":               PhotoImage(file = f"images\items\\DBPS_F.png"),
+    "DBPS":               PhotoImage(file = f"images\items\\DBPS.png"),
+    # destiny
+    "SCD_F":                PhotoImage(file = f"images\items\\SCD_F.png"),
+    "SCD":                  PhotoImage(file = f"images\items\\SCD.png"),
+    # doom
+    "BFGD_F":               PhotoImage(file = f"images\items\\BFGD_F.png"),
+    "BFGD":                 PhotoImage(file = f"images\items\\BFGD.png"),
+    "DBD_F":                PhotoImage(file = f"images\items\\DBD_F.png"),
+    "DBD":                  PhotoImage(file = f"images\items\\DBD.png"),
+    "DCD_F":                PhotoImage(file = f"images\items\DCD_F.png"),
+    "DCD":                  PhotoImage(file = f"images\items\DCD.png"),
+    "DHD_F":                PhotoImage(file = f"images\items\DHD_F.png"),
+    "DHD":                  PhotoImage(file = f"images\items\DHD.png"),
+    "DPD_F":                PhotoImage(file = f"images\items\DPD_F.png"),
+    "DPD":                  PhotoImage(file = f"images\items\DPD.png"),
+    # halo
+    "ESH_F":                PhotoImage(file = f"images\items\\ESH_F.png"),
+    "ESH":                  PhotoImage(file = f"images\items\\ESH.png"),
+    "HBH_F":                PhotoImage(file = f"images\items\\HBH_F.png"),
+    "HBH":                  PhotoImage(file = f"images\items\\HBH.png"),
+    "HCH_F":                PhotoImage(file = f"images\items\\HCH_F.png"),
+    "HCH":                  PhotoImage(file = f"images\items\\HCH.png"),
+    "HHH_F":                PhotoImage(file = f"images\items\\HHH_F.png"),
+    "HCH":                  PhotoImage(file = f"images\items\\HCH.png"),
+    "HPH_F":                PhotoImage(file = f"images\items\\HPH_F.png"),
+    "HPH":                  PhotoImage(file = f"images\items\\HPH.png"),
+    # marvel
+    "MTMa_F":               PhotoImage(file = f"images\items\\MTMa_F.png"),
+    "MTMa":                 PhotoImage(file = f"images\items\\MTMa.png"),
+    "IMBMa_F":              PhotoImage(file = f"images\items\\IMBMa_F.png"),
+    "IMBMa":                PhotoImage(file = f"images\items\\IMBMa.png"),
+    "IMCMa_F":              PhotoImage(file = f"images\items\\IMCMa_F.png"),
+    "IMCMa":                PhotoImage(file = f"images\items\\IMCMa.png"),
+    "IMHMa_F":              PhotoImage(file = f"images\items\\IMHMa_F.png"),
+    "IMHMa":                PhotoImage(file = f"images\items\\IMHMa.png"),
+    "IMPMa_F":              PhotoImage(file = f"images\items\\IMPMa_F.png"),
+    "IMPMa":                PhotoImage(file = f"images\items\\IMPMa.png"),
+    # megaman
+    "MBMe_F":               PhotoImage(file = f"images\items\\MBMe_F.png"),
+    "MBMe":                 PhotoImage(file = f"images\items\\MBMe.png"),
+    "MCMe_F":               PhotoImage(file = f"images\items\\MCMe_F.png"),
+    "MCMe":                 PhotoImage(file = f"images\items\\MCMe.png"),
+    "MHMe_F":               PhotoImage(file = f"images\items\\MHMe_F.png"),
+    "MHMe":                 PhotoImage(file = f"images\items\\MHMe.png"),
+    "MPMe_F":               PhotoImage(file = f"images\items\\MPMe_F.png"),
+    "MPMe":                 PhotoImage(file = f"images\items\\MPMe.png"),
+    # genshin
+    "SBG_F":                PhotoImage(file = f"images\items\\SBG_F.png"),
+    "SBG":                  PhotoImage(file = f"images\items\\SBG.png")
     }
     def __init__(self, root):
         root.geometry("800x800")
@@ -51,6 +129,7 @@ class GUI:
             highlightthickness = 0,
             relief = "ridge")
         canvas.place(x = 0, y = 0)
+        # canvas.wm_attributes("-transparentcolor", 'white')
 
         background = canvas.create_image(
             0, 0,
@@ -102,7 +181,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'helmets_section', stats_text, db.data, code))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'helmets_section', code))
         for item in db.chestplates:
             new_button = Button(
                 image = self.images[item['code']],
@@ -111,7 +190,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'chestplates_section', stats_text, db.data, code))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'chestplates_section', code))
         for item in db.pants:
             new_button = Button(
                 image = self.images[item['code']],
@@ -120,7 +199,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'pants_section', stats_text, db.data, code))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'pants_section', code))
         for item in db.boots:
             new_button = Button(
                 image = self.images[item['code']],
@@ -129,7 +208,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'boots_section', stats_text, db.data, code))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'boots_section', code))
         for item in db.weapons:
             new_button = Button(
                 image = self.images[item['code']],
@@ -138,7 +217,7 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'weapons_section', stats_text, db.data, code))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'weapons_section', code))
         for item in db.artifacts:
             new_button = Button(
                 image = self.images[item['code']],
@@ -147,15 +226,21 @@ class GUI:
                 highlightthickness = 0,
                 relief = "flat")
             inventory_items[item['code']] = new_button
-            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'artifacts_section', stats_text, db.data, code))
+            inventory_items[item['code']].configure(command = lambda code = item['code']: functions.select_item(inventory_items[code], character_armor, 'artifacts_section', code))
 
         # Equipment of the character
-        character_armor = {'helmets_section':       [inventory_items[db.character['armor']['helmet']], db.character['armor']['helmet']], 
-                            'chestplates_section':  [inventory_items[db.character['armor']['chestplate']], db.character['armor']['chestplate']], 
-                            'pants_section':        [inventory_items[db.character['armor']['pants']], db.character['armor']['pants']], 
-                            'boots_section':        [inventory_items[db.character['armor']['boots']], db.character['armor']['boots']], 
-                            'weapons_section':      [inventory_items[db.character['weapon']], db.character['weapon']], 
-                            'artifacts_section':    [inventory_items[db.character['artifact']], db.character['artifact']]}
+        character_armor = {'helmets_section':       [inventory_items[db.character['armor']['helmet']], db.character['armor']['helmet'],
+                                                    Label(image = self.images[db.character['armor']['helmet']])], 
+                            'chestplates_section':  [inventory_items[db.character['armor']['chestplate']], db.character['armor']['chestplate'],
+                                                    Label(image = self.images[db.character['armor']['chestplate']])], 
+                            'pants_section':        [inventory_items[db.character['armor']['pants']], db.character['armor']['pants'],
+                                                    Label(image = self.images[db.character['armor']['pants']])], 
+                            'boots_section':        [inventory_items[db.character['armor']['boots']], db.character['armor']['boots'],
+                                                    Label(image = self.images[db.character['armor']['boots']])], 
+                            'weapons_section':      [inventory_items[db.character['weapon']], db.character['weapon'],
+                                                    Label(image = self.images[db.character['weapon']])], 
+                            'artifacts_section':    [inventory_items[db.character['artifact']], db.character['artifact'],
+                                                    Label(image = self.images[db.character['artifact']])]}
         for item in character_armor:
             character_armor[item][0]['state'] = DISABLED
 
@@ -168,6 +253,7 @@ class GUI:
             highlightthickness = 0,
             relief = "flat")
         buttons['helmet_B'].place(x = 162, y = 226)
+        # character_armor['helmets_section'][2].place(x= 217, y = 281, anchor = "center")
 
         buttons['chestplate_B'] = Button(
             image = self.images["equipment_frame"],
@@ -176,6 +262,7 @@ class GUI:
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['chestplates_bg'], stats_text, buttons, inventory_items, coords, 'chestplates_section', character_armor),
             relief = "flat")
         buttons['chestplate_B'].place(x = 523, y = 224)
+        # character_armor['chestplates_section'][2].place(x= 579, y = 281, anchor = "center")
         
         buttons['pants_B'] = Button(
             image = self.images["equipment_frame"],
@@ -184,6 +271,7 @@ class GUI:
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['pants_bg'], stats_text, buttons, inventory_items, coords, 'pants_section', character_armor),
             relief = "flat")
         buttons['pants_B'].place(x = 162, y = 355)
+        # character_armor['pants_section'][2].place(x= 217, y = 412, anchor = "center")
         
         buttons['boots_B'] = Button(
             image = self.images["equipment_frame"],
@@ -192,6 +280,7 @@ class GUI:
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['boots_bg'], stats_text, buttons, inventory_items, coords, 'boots_section', character_armor),
             relief = "flat")
         buttons['boots_B'].place(x = 523, y = 355)
+        # character_armor['boots_section'][2].place(x= 579, y = 412, anchor = "center")
         
         buttons['weapon_B'] = Button(
             image = self.images["equipment_frame"],
@@ -200,6 +289,7 @@ class GUI:
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['weapons_bg'], stats_text, buttons, inventory_items, coords, 'weapons_section', character_armor), 
             relief = "flat")
         buttons['weapon_B'].place(x = 268, y = 87)
+        # character_armor['weapons_section'][2].place(x= 324, y = 144, anchor = "center")
 
         buttons['artifact_B'] = Button(
             image = self.images["equipment_frame"],
@@ -208,6 +298,7 @@ class GUI:
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['artifacts_bg'], stats_text, buttons, inventory_items, coords, 'artifacts_section', character_armor), 
             relief = "flat")
         buttons['artifact_B'].place(x = 417, y = 87)
+        # character_armor['artifacts_section'][2].place(x= 473, y = 144, anchor = "center")
 
         buttons['helmets_section'] = Button(
             image = self.images['helmets_section'],
