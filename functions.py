@@ -65,7 +65,7 @@ class Functions:
 
         self.inventory_sheet_button(buttons, db, coords, inventory_items, section, background, canvas, img, character_armor)
 
-    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_items, db, character_armor):
+    def initialize_character_sheet(self, root, background, canvas, img, buttons, stats_text, inventory_items, db, character_armor, images):
         root.geometry("800x800")
         canvas.itemconfig(background, image = img)
         buttons['helmets_section'].place_forget()
@@ -82,11 +82,17 @@ class Functions:
             inventory_items[item].place_forget()
         
         buttons['helmet_B'].place(x = 162, y = 226)
+        buttons['helmet_B'].configure(image = images[character_armor['helmets_section'][1]+'_F'])
         buttons['chestplate_B'].place(x = 523, y = 224)
+        buttons['chestplate_B'].configure(image = images[character_armor['chestplates_section'][1]+'_F'])
         buttons['pants_B'].place(x = 162, y = 355)
+        buttons['pants_B'].configure(image = images[character_armor['pants_section'][1]+'_F'])
         buttons['boots_B'].place(x = 523, y = 355)
+        buttons['boots_B'].configure(image = images[character_armor['boots_section'][1]+'_F'])
         buttons['weapon_B'].place(x = 268, y = 87)
+        buttons['weapon_B'].configure(image = images[character_armor['weapons_section'][1]+'_F'])
         buttons['artifact_B'].place(x = 417, y = 87)
+        buttons['artifact_B'].configure(image = images[character_armor['artifacts_section'][1]+'_F'])
 
         db.character.update_one({'name': 'Nahida'}, {"$set": { 
             'armor.helmet': character_armor['helmets_section'][1],

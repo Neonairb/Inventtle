@@ -247,7 +247,7 @@ class GUI:
         buttons = {}
 
         buttons['helmet_B'] = Button(
-            image = self.images["equipment_frame"],
+            image = self.images[character_armor['helmets_section'][1]+'_F'],
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['helmets_bg'], stats_text, buttons, inventory_items, coords, 'helmets_section', character_armor),
             borderwidth = 0,
             highlightthickness = 0,
@@ -256,7 +256,7 @@ class GUI:
         # character_armor['helmets_section'][2].place(x= 217, y = 281, anchor = "center")
 
         buttons['chestplate_B'] = Button(
-            image = self.images["equipment_frame"],
+            image = self.images[character_armor['chestplates_section'][1]+'_F'],
             borderwidth = 0,
             highlightthickness = 0,
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['chestplates_bg'], stats_text, buttons, inventory_items, coords, 'chestplates_section', character_armor),
@@ -265,7 +265,7 @@ class GUI:
         # character_armor['chestplates_section'][2].place(x= 579, y = 281, anchor = "center")
         
         buttons['pants_B'] = Button(
-            image = self.images["equipment_frame"],
+            image = self.images[character_armor['pants_section'][1]+'_F'],
             borderwidth = 0,
             highlightthickness = 0,
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['pants_bg'], stats_text, buttons, inventory_items, coords, 'pants_section', character_armor),
@@ -274,7 +274,7 @@ class GUI:
         # character_armor['pants_section'][2].place(x= 217, y = 412, anchor = "center")
         
         buttons['boots_B'] = Button(
-            image = self.images["equipment_frame"],
+            image = self.images[character_armor['boots_section'][1]+'_F'],
             borderwidth = 0,
             highlightthickness = 0,
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['boots_bg'], stats_text, buttons, inventory_items, coords, 'boots_section', character_armor),
@@ -283,7 +283,7 @@ class GUI:
         # character_armor['boots_section'][2].place(x= 579, y = 412, anchor = "center")
         
         buttons['weapon_B'] = Button(
-            image = self.images["equipment_frame"],
+            image = self.images[character_armor['weapons_section'][1]+'_F'],
             borderwidth = 0,
             highlightthickness = 0,
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['weapons_bg'], stats_text, buttons, inventory_items, coords, 'weapons_section', character_armor), 
@@ -292,7 +292,7 @@ class GUI:
         # character_armor['weapons_section'][2].place(x= 324, y = 144, anchor = "center")
 
         buttons['artifact_B'] = Button(
-            image = self.images["equipment_frame"],
+            image = self.images[character_armor['artifacts_section'][1]+'_F'],
             borderwidth = 0,
             highlightthickness = 0,
             command = lambda: functions.initialize_inventory_sheet(root, db, background, canvas, self.images['artifacts_bg'], stats_text, buttons, inventory_items, coords, 'artifacts_section', character_armor), 
@@ -367,5 +367,5 @@ class GUI:
             image = self.images['back_B'],
             borderwidth = 0,
             highlightthickness = 0,
-            command = lambda: functions.initialize_character_sheet(root, background, canvas, self.images['character_bg'], buttons, stats_text, inventory_items, db.data, character_armor),
+            command = lambda: functions.initialize_character_sheet(root, background, canvas, self.images['character_bg'], buttons, stats_text, inventory_items, db.data, character_armor, self.images),
             relief = "flat")
