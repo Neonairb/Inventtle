@@ -171,28 +171,44 @@ class GUI:
         item_stats = {
             'atk': canvas.create_text(
                 215.0, 584.5,
-                text = "100",
+                text = "",
                 fill = "#000000",
                 state = HIDDEN,
                 font = ("Minecraft", int(36.0))),
             'def': canvas.create_text(
                 215.0, 629.5,
-                text = "100",
+                text = "",
                 fill = "#000000",
                 state = HIDDEN,
                 font = ("Minecraft", int(36.0))),
             'vel': canvas.create_text(
                 428.0, 584.5,
-                text = "100",
+                text = "",
                 fill = "#000000",
                 state = HIDDEN,
                 font = ("Minecraft", int(36.0))),
             'mag': canvas.create_text(
                 428.0, 629.5,
-                text = "100",
+                text = "",
                 fill = "#000000",
                 state = HIDDEN,
-                font = ("Minecraft", int(36.0)))
+                font = ("Minecraft", int(36.0))),
+            'name': canvas.create_text(
+                55.0, 349.5,
+                text = "",
+                fill = "#ffffff",
+                anchor = "nw",
+                justify = 'right',
+                width = 616,
+                font = ("Minecraft", int(36.0))),
+            'description': canvas.create_text(
+                55.0, 422.0,
+                text = "",
+                fill = "#ffffff",
+                anchor = "nw",
+                justify = 'left',
+                width = 616,
+                font = ("Minecraft", int(24.0)))
         }
 
         # Botones

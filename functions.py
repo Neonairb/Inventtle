@@ -28,10 +28,12 @@ class Functions:
             inventory_items[item].place_forget()
 
         # mostrar stats del objeto
-        canvas.itemconfig(item_stats['atk'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['atk'])
-        canvas.itemconfig(item_stats['def'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['def'])
-        canvas.itemconfig(item_stats['vel'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['vel'])
-        canvas.itemconfig(item_stats['mag'], text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['mag'])
+        canvas.itemconfig(item_stats['atk'],            text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['atk'])
+        canvas.itemconfig(item_stats['def'],            text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['def'])
+        canvas.itemconfig(item_stats['vel'],            text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['vel'])
+        canvas.itemconfig(item_stats['mag'],            text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['stats']['mag'])
+        canvas.itemconfig(item_stats['name'],           text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['name'])
+        canvas.itemconfig(item_stats['description'],    text= list(db.data[section[:-8]].find({'code': character_armor[section][1]}))[0]['description'])
 
         try:
             if(section == 'helmets_section'):
@@ -71,6 +73,8 @@ class Functions:
         canvas.itemconfig(item_stats['def'], state= NORMAL)
         canvas.itemconfig(item_stats['vel'], state= NORMAL)
         canvas.itemconfig(item_stats['mag'], state= NORMAL)
+        canvas.itemconfig(item_stats['name'], state= NORMAL)
+        canvas.itemconfig(item_stats['description'], state= NORMAL)
 
         self.inventory_sheet_button(buttons, db, coords, inventory_items, section, background, canvas, img, character_armor, item_stats)
 
@@ -135,6 +139,8 @@ class Functions:
         canvas.itemconfig(item_stats['def'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['stats']['def'])
         canvas.itemconfig(item_stats['vel'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['stats']['vel'])
         canvas.itemconfig(item_stats['mag'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['stats']['mag'])
+        canvas.itemconfig(item_stats['name'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['name'])
+        canvas.itemconfig(item_stats['description'], text= list(db.data[piece[:-8]].find({'code': character_armor[piece][1]}))[0]['description'])
 
     def get_stat(self, db, character_armor, stat):
         helmet = list(db['helmets'].find({'code': character_armor['helmets_section'][1]}))[0]['stats'][stat]
