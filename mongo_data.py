@@ -39,20 +39,20 @@ a = cluster['inventtle']['character']
 a.delete_many({})
 
 # ALL DATA
-add_armor('helmets', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'h')
-add_armor('pants', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'p')
-add_armor('boots', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'b')
-add_armor('chestplates', 'Nada', 0, 0, 0, 0, 'No llevas nada...', 'c')
-add_weapon('Nada', 0, 0, 0, 0, 'No llevas nada...', 'w')
-add_artifact('Nada', 1, 1, 1, 1, 'No llevas nada...', 'a')
+add_armor('helmets', '...', 0, 0, 0, 0, 'You have nothing...', 'h')
+add_armor('pants', '...', 0, 0, 0, 0, 'You have nothing...', 'p')
+add_armor('boots', '...', 0, 0, 0, 0, 'You have nothing...', 'b')
+add_armor('chestplates', '...', 0, 0, 0, 0, 'You have nothing...', 'c')
+add_weapon('...', 0, 0, 0, 0, 'You have nothing...', 'w')
+add_artifact('...', 1, 1, 1, 1, 'You have nothing...', 'a')
 
 #Minecraft
-add_armor('helmets', 'Diamond Helmet', 0, 10, 0, 0, 'Recien crafteada bien maciza.', 'DHM')
-add_armor('pants', 'Diamond Pants', 0, 10, 0, 0, 'Recien crafteada bien maciza.', 'DPM')
-add_armor('boots', 'Diamond Boots', 0, 10, 0, 0, 'Recien crafteada bien maciza.', 'DBM')
-add_armor('chestplates', 'Diamond Chestplate', 0, 10, 0, 0, 'Recien crafteada bien maciza.', 'DCM')
-add_weapon('Diamond Sword', 10, 0, 5, 0, 'No esta encantada tristemente.', 'DSM')
-add_artifact('Totem of Undying', 1, 1, 1, 5, 'Te regresara de entre los muertos... por desgracia no hay juego que jugar aqui.', 'TOUM')
+add_armor('helmets', 'Diamond Helmet', 0, 10, 0, 0, 'Just crafted, super badass', 'DHM')
+add_armor('pants', 'Diamond Pants', 0, 10, 0, 0, 'Just crafted, super badass.', 'DPM')
+add_armor('boots', 'Diamond Boots', 0, 10, 0, 0, 'Just crafted, super badass.', 'DBM')
+add_armor('chestplates', 'Diamond Chestplate', 0, 10, 0, 0, 'Just crafted, super badass.', 'DCM')
+add_weapon('Diamond Sword', 10, 0, 5, 0, 'Unfortunately, it\'s not enchanted.', 'DSM')
+add_artifact('Totem of Undying', 1, 1, 1, 5, 'Will bring you back from the dead, sadly there\'re no games to play here...', 'TOUM')
 
 #star wars
 add_armor('helmets', 'Darth Vader\'s helmet', 0, 7, 0, 8, 'You can now feel the dark side', 'DBHS')
@@ -66,7 +66,7 @@ add_armor('helmets', 'Doom Helmet', 6, 6, 0, 0, 'Wearing this will make you list
 add_armor('pants', 'Doom Pants', 6, 6, 0, 0, 'Wearing this will make you listen epic metal musice in your mind', 'DPD')
 add_armor('boots', 'Doom Boots', 6, 6, 0, 0, 'Wearing this will make you listen epic metal music in your mind', 'DBD')
 add_armor('chestplates', 'Doom Chestplate', 6, 6, 0, 0, 'Wearing this will make you listen epic metal music in your mind', 'DCD')
-add_weapon('BFG 9000', 20, 0, -10, 0, 'Doesn\'t look like something practical to use, but looks epic', 'BFGD')
+add_weapon('BFG 9000', 20, 0, -10, 0, 'Doesn\'t look like something practical to use, but it looks epic', 'BFGD')
 
 #halo
 add_armor('helmets', 'Master Shief\'s Helmet', 5, 7, 7, 0, 'Youre now the legendary Spartan', 'HBH')
